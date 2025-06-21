@@ -1,3 +1,4 @@
+import json 
 from pytubefix import YouTube
 from pytubefix import Playlist
 
@@ -62,7 +63,7 @@ def sorting_playlist_by_views (url_pl: str) -> list:
     for video in pl.video_urls:
         all_videos.append(get_info(video))
 
-    all_videos.sort(key=lambda x: x['length_seconds'], reverse=True)
+    all_videos.sort(key=lambda x: x['views'], reverse=True)
     return all_videos
 
 
@@ -71,3 +72,7 @@ if __name__ == '__main__':
     # info_about_videos(URLPL)
     print(sorting_playlist_by_views(URLPL))
 
+    with open("sorting_playlist_by_views.json", 'w') as f:
+        json.dump(sorting_playlist_by_views(URLPL), f, indent = 4)
+    
+  
