@@ -72,7 +72,7 @@ if __name__ == '__main__':
     # info_about_videos(URLPL)
     print(sorting_playlist_by_views(URLPL))
 
-    with open("sorting_playlist_by_views.json", 'w') as f:
+    with open("sorted_by_view.json", 'w') as f:
         json.dump(sorting_playlist_by_views(URLPL), f, indent = 4)
     
   
