@@ -2,7 +2,7 @@ from pytubefix import YouTube
 from pytubefix import Playlist
 
 URL = "https://www.youtube.com/watch?v=sNcLm2MtvwE&list=PLQLz3vJxwofh8KSaJ7FoA5Bw2Zdvyo4S_&index=6"
-
+URLPL = "https://www.youtube.com/playlist?list=PLQLz3vJxwofh8KSaJ7FoA5Bw2Zdvyo4S_"
 
 def get_info(url: str) -> dict:
     """Fetches basic info about a YouTube video.
@@ -24,14 +24,9 @@ def get_info(url: str) -> dict:
     }
     return data
 
-#print(get_info(URL))
-
 #PlayList
 
-URL = "https://www.youtube.com/playlist?list=PLQLz3vJxwofh8KSaJ7FoA5Bw2Zdvyo4S_"
-
-
-def info_about_videos (pl_url):
+def some_info_about_videos (pl_url: str):
     pl = Playlist(pl_url)
     for video in pl.videos:
         print(video.title)
@@ -40,5 +35,30 @@ def info_about_videos (pl_url):
         print(video.length // 60 ,'mins,', video.length - video.length // 60 * 60, 'secs' )
         print("------------")
 
-info_about_videos(URL)
+def sorting_playlist_by_views (url_pl: str) -> list:
+    """Fetches basic info about a YouTube video.
+
+    Note:
+        Makes and returns sorted dictonary by views of videos
+
+    Args:
+        url (str): The URL of the YouTube playList.
+
+    Returns:
+        dict: A dictionary containing the videos sorted by views
+    """
+    pl = Playlist(url_pl)
+    all_videos = []
+
+    for video in pl.video_urls:
+        all_videos.append(get_info(video))
+
+    all_videos.sort(key=lambda x: x['length_seconds'], reverse=True)
+    return all_videos
+
+
+if __name__ == '__main__':
+    #print(get_info(URL))
+    # info_about_videos(URLPL)
+    print(sorting_playlist_by_views(URLPL))
 
