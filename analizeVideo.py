@@ -1,4 +1,5 @@
 from pytubefix import YouTube
+from pytubefix import Playlist
 
 URL = "https://www.youtube.com/watch?v=sNcLm2MtvwE&list=PLQLz3vJxwofh8KSaJ7FoA5Bw2Zdvyo4S_&index=6"
 
@@ -23,4 +24,17 @@ def get_info(url: str) -> dict:
     }
     return data
 
-print(get_info(URL))
+#print(get_info(URL))
+
+#PlayList
+
+URL = "https://www.youtube.com/playlist?list=PLQLz3vJxwofh8KSaJ7FoA5Bw2Zdvyo4S_"
+pl = Playlist(URL)
+
+
+for video in pl.videos:
+    print(video.title)
+    print(video.views)
+    #video duration (mins, secs)
+    print(video.length // 60 ,'mins,', video.length - video.length // 60 * 60, 'secs' )
+    print("------------")
