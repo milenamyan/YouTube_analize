@@ -27,6 +27,15 @@ def get_info(url: str) -> dict:
 #PlayList
 
 def some_info_about_videos (pl_url: str):
+    """Fetches basic info about a YouTube video.
+
+    Note:
+        Prints some info about videos
+
+    Args:
+        url (str): The URL of the YouTube playList.
+
+    """
     pl = Playlist(pl_url)
     for video in pl.videos:
         print(video.title)
